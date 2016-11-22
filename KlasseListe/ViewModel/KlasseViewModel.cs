@@ -47,6 +47,7 @@ namespace KlasseListe.ViewModel
             Listen.Add(nyElev);
         }
 
+        //
 
         public KlasseViewModel()
         {
