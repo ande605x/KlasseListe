@@ -24,5 +24,6 @@
         <Button x:Name="button1" Content="Slet elev" HorizontalAlignment="Left" Margin="800,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.422,-10.021" Command="{Binding DeleteElevCommand}"/>
         <Button x:Name="button2" Content="GEM FIL" HorizontalAlignment="Left" Margin="800,335,0,0" VerticalAlignment="Top" Command="{Binding GemDataCommand}"/>
         <Button x:Name="button3" Content="HENT FIL" HorizontalAlignment="Left" Margin="800,394,0,0" VerticalAlignment="Top" Command="{Binding HentDataCommand}"/>
+        <Button x:Name="button4" Content="Clear" HorizontalAlignment="Left" Margin="809,250,0,0" VerticalAlignment="Top" Command="{Binding ClearListeCommand}"/>
     </Grid>
 </Page>

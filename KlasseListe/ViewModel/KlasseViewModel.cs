@@ -36,6 +36,8 @@ namespace KlasseListe.ViewModel
 
         public RelayCommand HentDataCommand { get; set; }
 
+        public RelayCommand ClearListeCommand { get; set; }
+
 
         private Model.KlasseInfo selectedElev;
 
@@ -73,6 +75,11 @@ namespace KlasseListe.ViewModel
 
         }
 
+        public void ClearListe()
+        {
+            Listen.Clear();
+        }
+
         public async void GemDataTilDiskAsync()
         {
             string jsonText = this.Listen.GetJson();
@@ -101,6 +108,8 @@ namespace KlasseListe.ViewModel
             GemDataCommand = new RelayCommand(GemDataTilDiskAsync);
             HentDataCommand = new KlasseListe.RelayCommand(HentDataFromDiskAsync);
             localfolder = ApplicationData.Current.LocalFolder;
+
+            ClearListeCommand = new RelayCommand(ClearListe);
 
         }
     }
