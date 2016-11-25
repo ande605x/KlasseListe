@@ -14,7 +14,7 @@ namespace KlasseListe.Model
         /// 
         public string Fornavn { get; set; }
         public string Efternavn { get; set; }
-        public int MobilNr { get; set; }
+        public string MobilNr { get; set; }
         public string Email { get; set; }
         public string GitNavn { get; set; }
 

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Newtonsoft.Json;
+using System.IO;
+using Windows.Storage;
 
 namespace KlasseListe.ViewModel
 {
@@ -22,6 +25,17 @@ namespace KlasseListe.ViewModel
         }
 
         public AddElevCommand AddElevCommand { get; set; }
+
+        public DeleteElevCommand DeleteElevCommand { get; set; }
+
+        StorageFolder localfolder = null;
+
+        private readonly string filnavn = "JsonText.json";
+
+        public RelayCommand GemDataCommand { get; set; }
+
+        public RelayCommand HentDataCommand { get; set; }
+
 
         private Model.KlasseInfo selectedElev;
 
@@ -44,9 +58,36 @@ namespace KlasseListe.ViewModel
 
         public void AddNyElev()
         {
-            Listen.Add(nyElev);
+            Model.KlasseInfo TempKlasseInfo = new Model.KlasseInfo();
+            TempKlasseInfo.Fornavn = nyElev.Fornavn;
+            TempKlasseInfo.Efternavn = nyElev.Efternavn;
+            TempKlasseInfo.Email = nyElev.Email;
+            TempKlasseInfo.GitNavn = nyElev.GitNavn;
+            TempKlasseInfo.MobilNr = nyElev.MobilNr;
+            Listen.Add(TempKlasseInfo);
         }
 
+        public void DeleteElev()
+        {
+            Listen.Remove(selectedElev);
+
+        }
+
+        public async void GemDataTilDiskAsync()
+        {
+            string jsonText = this.Listen.GetJson();
+            StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file,jsonText);
+        }
+
+        public async void HentDataFromDiskAsync()
+        {
+            this.Listen.Clear();
+            StorageFile file = await localfolder.GetFileAsync(filnavn);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            Listen.InsertJson(jsonText);
+
+        }
         //
 
         public KlasseViewModel()
@@ -55,7 +96,11 @@ namespace KlasseListe.ViewModel
             SelectedElev = new Model.KlasseInfo();
             // AddElevCommand = new RelayCommand(AddNyElev);
             AddElevCommand = new ViewModel.AddElevCommand(AddNyElev);
+            DeleteElevCommand = new DeleteElevCommand(DeleteElev);
             nyElev = new Model.KlasseInfo();
+            GemDataCommand = new RelayCommand(GemDataTilDiskAsync);
+            HentDataCommand = new KlasseListe.RelayCommand(HentDataFromDiskAsync);
+            localfolder = ApplicationData.Current.LocalFolder;
 
         }
     }

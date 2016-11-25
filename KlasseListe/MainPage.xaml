@@ -12,14 +12,17 @@
         <ViewModel:KlasseViewModel/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="206" Margin="133,76,0,0" VerticalAlignment="Top" Width="660" ItemsSource="{Binding Listen}" SelectedItem="{Binding SelectedElev, Mode=TwoWay}"/>
+    <Grid Background="#FFE6B388">
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="206" Margin="133,76,0,0" VerticalAlignment="Top" Width="660" ItemsSource="{Binding Listen}" SelectedItem="{Binding SelectedElev, Mode=TwoWay}" Background="#FFF9DD92"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="133,335,0,0" TextWrapping="Wrap" Text="{Binding SelectedElev}" VerticalAlignment="Top" Height="81" Width="531" SelectionChanged="textBlock_SelectionChanged"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Right" Margin="0,0,1233,401" TextWrapping="Wrap" Text="{Binding nyElev.Fornavn, Mode=TwoWay}" VerticalAlignment="Bottom" TextChanged="textBox_TextChanged" PlaceholderText="Fornavn" RenderTransformOrigin="-2.183,0.75"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="32" Margin="133,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.Fornavn, Mode=TwoWay}" VerticalAlignment="Top" Width="75" PlaceholderText="Fornavn" />
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="32" Margin="212,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.Efternavn, Mode=TwoWay}" VerticalAlignment="Top" Width="123" PlaceholderText="Efternavn"/>
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="32" Margin="340,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.MobilNr, Mode=TwoWay}" VerticalAlignment="Top" Width="112" PlaceholderText="Tlf" RenderTransformOrigin="-0.238,-0.167"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="32" Margin="457,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.Email, Mode=TwoWay}" VerticalAlignment="Top" Width="126" PlaceholderText="Email"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="32" Margin="588,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.GitNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="129" PlaceholderText="GitID"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="791,527,0,0" VerticalAlignment="Top" Command="{Binding AddElevCommand}"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="32" Margin="588,527,0,0" TextWrapping="Wrap" Text="{Binding nyElev.GitNavn, Mode=TwoWay}" VerticalAlignment="Top" TextChanged="textBox_TextChanged" PlaceholderText="GitID"/>
+        <Button x:Name="button" Content="Tilføj elev" HorizontalAlignment="Left" Margin="800,527,0,0" VerticalAlignment="Top" Command="{Binding AddElevCommand}"/>
+        <Button x:Name="button1" Content="Slet elev" HorizontalAlignment="Left" Margin="800,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.422,-10.021" Command="{Binding DeleteElevCommand}"/>
+        <Button x:Name="button2" Content="GEM FIL" HorizontalAlignment="Left" Margin="800,335,0,0" VerticalAlignment="Top" Command="{Binding GemDataCommand}"/>
+        <Button x:Name="button3" Content="HENT FIL" HorizontalAlignment="Left" Margin="800,394,0,0" VerticalAlignment="Top" Command="{Binding HentDataCommand}"/>
     </Grid>
 </Page>
